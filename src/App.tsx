@@ -27,6 +27,7 @@ function App() {
   const x = useMotionValue(0);
   return (
     <Wrapper>
+      <button onClick={() => x.set(200)}>click me</button>
       <Box style={{ x }} drag="x" dragSnapToOrigin />
     </Wrapper>
   );
