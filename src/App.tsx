@@ -9,7 +9,6 @@ const Wrapper = styled(motion.div)`
   justify-content: center;
   align-items: center;
 `;
-
 const Box = styled(motion.div)`
   width: 200px;
   height: 200px;
