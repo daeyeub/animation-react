@@ -23,54 +23,11 @@ const Box = styled(motion.div)`
   position: absolute;
   top: 50px;
 `;
-const box = {
-  entry: (back: boolean) => ({
-    opacity: 0,
-    x: back ? -500 : 500,
-    scale: 0,
-  }),
-  center: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-    },
-    x: 0,
-    scale: 1,
-  },
-  exit: (back: boolean) => ({
-    opacity: 0,
-    scale: 0,
-    x: back ? 500 : -500,
-    transition: { duration: 0.5 },
-  }),
-};
+
 function App() {
-  const [visible, setVisible] = useState(1);
-  const [back, setBack] = useState(false);
-  const nextPlease = () => {
-    setBack(false);
-    setVisible((prev) => (prev === 10 ? 10 : prev + 1));
-  };
-  const prevPlease = () => {
-    setBack(true);
-    setVisible((prev) => (prev === 1 ? 1 : prev - 1));
-  };
   return (
     <Wrapper>
-      <AnimatePresence mode="wait" custom={back}>
-        <Box
-          custom={back}
-          variants={box}
-          initial="entry"
-          animate="center"
-          exit="exit"
-          key={visible}
-        >
-          {visible}
-        </Box>
-      </AnimatePresence>
-      <button onClick={nextPlease}>Next</button>
-      <button onClick={prevPlease}>prev</button>
+      <Box></Box>
     </Wrapper>
   );
 }
