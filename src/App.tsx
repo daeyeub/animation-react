@@ -36,28 +36,42 @@ const Overlay = styled(motion.div)`
   justify-content: center;
   align-items: center;
 `;
-
+const datas = [
+  { id: "1", text: "hello" },
+  { id: "2", text: "hi" },
+  { id: "3", text: "danbi" },
+  { id: "4", text: "daeyeub" },
+];
 function App() {
-  const [id, setId] = useState<null | string>(null);
+  const [test, setTest] = useState({} as any);
+  const [over, setOver] = useState(false);
   return (
     <Wrapper>
       <Grid>
-        {["1", "2", "3", "4"].map((n) => (
-          <Box onClick={() => setId(n)} key={n} layoutId={n}>
-            {n}
+        {datas.map((data) => (
+          <Box
+            drag
+            onClick={() => {
+              setTest(data);
+              setOver(true);
+            }}
+            key={data.id}
+            layoutId={data.id}
+          >
+            {data.text}
           </Box>
         ))}
       </Grid>
       <AnimatePresence>
-        {id ? (
+        {over ? (
           <Overlay
-            onClick={() => setId(null)}
+            onClick={() => setOver(false)}
             initial={{ backgroundColor: "rgba(0,0,0,0)" }}
             animate={{ backgroundColor: "rgba(0,0,0,0.5)" }}
             exit={{ backgroundColor: "rgba(0,0,0,0)" }}
           >
-            <Box style={{ width: 600, height: 400 }} layoutId={id}>
-              {id}
+            <Box style={{ width: 600, height: 400 }} layoutId={test.id}>
+              {test.text}
             </Box>
           </Overlay>
         ) : null}
